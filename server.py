@@ -1,3 +1,4 @@
+import os
 from http.server import BaseHTTPRequestHandler
 from http.server import HTTPServer
 import json
@@ -5,9 +6,6 @@ import json
 
 class HttpGetHandler(BaseHTTPRequestHandler):
     def do_GET(self):
-        for name in dir(self):
-            if not name.startswith('_'):
-                print(name, self.__getattribute__(name))
         print('get request')
 
         self._set_headers()
@@ -73,7 +71,8 @@ class HttpGetHandler(BaseHTTPRequestHandler):
 
 
 def run(handler_class=BaseHTTPRequestHandler):
-    server_address = ('', os.environ['PORT'])
+    PORT = os.environ.get('PORT', "8080")
+    server_address = ('', int(PORT))
     httpd = HTTPServer(server_address, handler_class)
     httpd.serve_forever()
 
