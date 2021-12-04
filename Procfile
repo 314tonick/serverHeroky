@@ -1,1 +1,1 @@
-web: python yourscript.py
+web: python server.py
