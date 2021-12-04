@@ -73,7 +73,7 @@ class HttpGetHandler(BaseHTTPRequestHandler):
 
 
 def run(handler_class=BaseHTTPRequestHandler):
-    server_address = ('', 8080)
+    server_address = ('', os.environ['PORT'])
     httpd = HTTPServer(server_address, handler_class)
     httpd.serve_forever()
 
