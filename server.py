@@ -40,7 +40,7 @@ class HttpGetHandler(BaseHTTPRequestHandler):
                 answer['message'] = "Registered! :)"
                 pwds[lgn] = pwd
                 with open("Users.txt", "a") as w:
-                    w.write(f"{lgn} {pwd}\n")
+                    w.write(f"{lgn} {pwd} 0\n")
         elif data['command'] == 'get':
             lgn, pwd = data['username'], data['password']
             parameter = data['parameter']
@@ -96,9 +96,12 @@ f = open("Users.txt")
 pwds: dict = {}
 info: dict = {}
 for line in f:
-    s = line.split()
-    pwds[s[0]] = s[1]
-    info[s[0]] = {'integer': s[2]}
+    try:
+        s = line.split()
+        pwds[s[0]] = s[1]
+        info[s[0]] = {'integer': s[2]}
+    except IndexError:
+        pass
 f.close()
 
 run(handler_class=HttpGetHandler)
