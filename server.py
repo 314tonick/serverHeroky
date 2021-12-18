@@ -60,7 +60,7 @@ class HttpGetHandler(BaseHTTPRequestHandler):
                 answer['status'] = "Failed"
                 answer['message'] = "Username is not found :("
         elif data['command'] == 'verify':
-            wrd = data['word']
+            wrd = data['word'] + '\n'
             if wrd in words:
                 answer['status'] = "YES"
             else:
@@ -91,6 +91,7 @@ except FileNotFoundError:
 
 wFile = open('Words.txt')
 words = wFile.readlines()
+
 wFile.close()
 f = open("Users.txt")
 pwds: dict = {}
