@@ -68,7 +68,7 @@ class HttpGetHandler(BaseHTTPRequestHandler):
                 if wrd in words:
                     answer['status'] = "YES"
                     if info[lgn]['guessed'][words.index(wrd)] == '0':
-                        info[lgn]['quessed'][words.index(wrd)] = '1'
+                        info[lgn]['guessed'][words.index(wrd)] = '1'
                         info[lgn]['integer'] += 1
                         w = open('Users.txt', 'w')
                         for lgn in info:
