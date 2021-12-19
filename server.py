@@ -40,6 +40,7 @@ class HttpGetHandler(BaseHTTPRequestHandler):
                 answer['signed_in'] = "OK"
                 answer['message'] = "Registered! :)"
                 pwds[lgn] = pwd
+                info[lgn] = {'integer': 0, 'guessed': ['0'] * 1525}
                 with open("Users.txt", "a") as w:
                     w.write(f"{lgn} {pwd} 0 {'0'*1525}\n")
         elif data['command'] == 'get':
@@ -116,7 +117,7 @@ for line in f:
     try:
         s = line.split()
         pwds[s[0]] = s[1]
-        info[s[0]] = {'integer': s[2], 'guessed': list(s[3])}
+        info[s[0]] = {'integer': int(s[2]), 'guessed': list(s[3])}
     except IndexError:
         pass
 f.close()
